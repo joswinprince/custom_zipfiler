@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>hl7-FileEngine - Version - 1.0.3</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/style.css"
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+	$(document).ready(function(){
+	  $('[data-toggle="tooltip"]').tooltip();   
+	});
+</script> 
+</head>
+<body>
+	
+<div></div>
+<div class="container">
+	<div class ="item">
+<div class="jumbotron text-center">
+  <h2 class="page-main-head"> Hl7 - File Engine</h2>
+  </div>
+</div>
+<div class ="item">
+<div class="container" width="40px" height="40px" data-toggle="tooltip" title="Log out">
+	<form id="logoutForm" action="/logout" method="get">
+  	<button type="submit">Log Out
+		
+	  </button>
+	</form>
+	</div>
+</div>
+</div>
+<div></div>
+<div class="container">
+	<div class="sub-container">
+ <!-- <form action="#" th:action="@{/index}" th:object="${name}" method="post"> -->
+<form action="#" th:action="@{/generate}" th:object="${generateForm}" method="post" >
+  
+  <div class="form-group">
+  <label for="fileType"> hl7 Template </label>
+
+  <select id="fileType" name="fileType" class="custom-select custom-select-sm" th:field="*{fileType}" data-toggle="tooltip" title="Please Select the hl7 Template" required>
+            <option value="" disabled selected hidden>Select hl7 template</option>
+            <option value="hl7_helius">hl7 helius</option>
+            <option value="hl7_mayo">hl7 mayo</option>
+           <!-- <option value="hl7_mayo_IE">hl7_mayo_IE</option>-->
+        </select>
+        </div>
+  <div class="form-group">
+  <label for="usr">Assigned Test</label>
+  <select id="fileType" name="testType" class="custom-select custom-select-sm" th:field="*{testType}" data-toggle="tooltip" title="Please Select the Test for File generation" required>
+            <option value="" disabled selected hidden> Select Test </option>
+            <option value="1001^PrecivityAD2">1001^PrecivityAD2</option>
+            <option value="1002^PrecivityAD">1002^PrecivityAD</option>
+            <option value="1003^Precivity-ApoE">1003^Precivity-ApoE</option>
+            <option value="2001^PrecivityAD2 + Precivity-ApoE">2001^PrecivityAD2 + Precivity-ApoE</option>
+            <option value="2002^PrecivityAD2 Reflex to Precivity ApoE">2002^PrecivityAD2 Reflex to Precivity ApoE</option>
+        </select>
+	</div>
+	<!-- Patient Category -->
+  <div class="form-group">
+  <label for="usr">Patient Category</label>
+  <select id="fileType" name="patientCategory" class="custom-select custom-select-sm" th:field="*{patientCategory}" data-toggle="tooltip" title="Please Select the PATIENT type" required>
+            <option value="" disabled selected hidden> Select Category </option>
+            <option value="HISPANIC">HISPANIC</option>
+            <option value="NON_HISP">NON_HISP</option>
+        </select>
+	</div>
+  <div class="form-group">
+	  <label for="comment">Message Format:</label>
+	  <textarea class="form-control" rows="5" id="messageFormat" readonly th:field="*{message}"></textarea>
+	</div>
+
+  <div class="input-group mb-3 input-group-sm">
+     <div class="input-group-prepend">
+       <span class="input-group-text">AccessionName_TotalFileToGenerate</span>
+    </div>
+    <input type="text" class="form-control" id="name" th:field="*{name}" data-toggle="tooltip" title="Accession Name and total files to generate should be in acceptable format ABCD_20 to generate 20 files" required>
+  </div>
+  <div class="input-group mb-3 input-group-sm">
+   <!--
+     <div class="input-group-prepend">
+       <span class="input-group-text">Authentication Token:</span>
+    </div>
+    <input type="password" class="form-control" id="authenticationToken" th:field="*{authenticationToken}" data-toggle="tooltip" title="Enter security Token" required>
+ --> </div>
+  
+  
+  <div>
+	  <button type="submit" class="btn btn-info">Generate & Download Zip</button>
+  	
+  </div>
+  
+
+  
+</form>
+	</div>
+</div>
+
+</body>
+</html>

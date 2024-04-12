@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Window</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+         .spinner-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999; /* Ensure the spinner is above other content */
+        }
+        
+        .spinner {
+            display: none; /* Initially hide the spinner */
+        }
+        
+    </style>
+</head>
+<body>
+	<div class="spinner-container">
+    <div class="spinner">
+        <!-- Font Awesome spinner icon -->
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+	</div>
+    <div id="response"></div> <a href="/index">Back to Form</a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            // Show the spinner
+            $(".spinner").show();
+
+            // Make an AJAX request to your Spring Boot backend
+            $.ajax({
+                url: "http://localhost:8080/test", // Thymeleaf URL syntax
+                type: "GET",
+                success: function(response) {
+                    // Hide the spinner
+                    $(".spinner").hide();
+                    
+                    // Display the response
+                    $("#response").html("Response: " + response);
+                },
+                error: function(xhr, status, error) {
+                    // Hide the spinner
+				console.log('status')
+				console.log(status)
+                    $(".spinner").hide();
+
+                    // Display the error message
+                    $("#response").html("Authentication Token Failed !! Retry again " + error);
+                }
+            });
+        });
+        /*]]>*/
+    </script>
+</body>
+</html>
