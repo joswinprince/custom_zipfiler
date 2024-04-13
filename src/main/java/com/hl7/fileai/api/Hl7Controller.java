@@ -105,7 +105,7 @@ public class Hl7Controller {
 	    	   model.addAttribute("name", generateForm.getName());
 		        model.addAttribute("fileType", generateForm.getFileType());
 		        model.addAttribute("patientCategory", generateForm.getPatientCategory());
-		        String path ="//home//febijoswin1303//files"// "C:\\hl7_files\\";
+		        String path ="//home//febijoswin1303//files";// "C:\\hl7_files\\";
 				// FileEngine create's File !
 		        GenerateHl7.createFileGetPath(path , generateForm.getName(), generateForm.getTestType(), generateForm.getFileType(),generateForm.getPatientCategory());
 				//Make Zip File Path
